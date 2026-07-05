@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamrul Hasan — Java &amp; Spring Boot Developer</title>
+<meta name="description" content="Kamrul Hasan — Java &amp; Spring Boot developer building AI-integrated systems. WordPress developer with 10+ shipped business sites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F6FA;
+    --surface:#FFFFFF;
+    --surface-2:#FBFBFE;
+    --ink:#10152B;
+    --steel:#5C6478;
+    --steel-dim:#9096A8;
+    --line:#E4E6EF;
+    --signal:#D9660B;
+    --signal-tint:#FFF1E4;
+    --circuit:#0F8B8D;
+    --circuit-tint:#E6F6F5;
+    --shadow: 0 1px 2px rgba(16,21,43,0.04), 0 8px 24px rgba(16,21,43,0.05);
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,246,250,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1080px; margin:0 auto;
+  }
+  .logo{font-family:var(--mono); font-size:15px; letter-spacing:0.02em; color:var(--ink); text-decoration:none;}
+  .logo span{color:var(--signal);}
+  nav.links{display:flex; gap:28px; font-size:14px;}
+  nav.links a{text-decoration:none; color:var(--steel); transition:color .2s;}
+  nav.links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:var(--mono); font-size:13px; text-decoration:none;
+    color:#fff; background:var(--signal);
+    padding:8px 16px; border-radius:6px; white-space:nowrap;
+  }
+
+  .hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .hero .wrap{display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center;}
+
+  .avatar{
+    width:190px; height:238px; border-radius:22px;
+    background:var(--surface); border:1px solid var(--line);
+    box-shadow:var(--shadow), 0 0 0 6px var(--surface), 0 0 0 7px var(--line);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; flex-shrink:0; position:relative;
+  }
+  .avatar img{
+    width:100%; height:100%; object-fit:cover; object-position:center 25%;
+    display:none; image-rendering:auto;
+  }
+  .avatar-fallback{
+    font-family:var(--display); font-weight:700; font-size:2.6rem;
+    color:var(--signal); background:var(--signal-tint);
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  }
+
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--circuit);
+    text-transform:uppercase; letter-spacing:0.12em; margin:0 0 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--circuit);}
+  h1.hero-title{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(2.1rem, 4.2vw, 3.1rem);
+    line-height:1.1; margin:0 0 18px; letter-spacing:-0.01em;
+  }
+  h1.hero-title em{font-style:normal; color:var(--signal);}
+  .hero-sub{color:var(--steel); font-size:1.03rem; max-width:52ch; margin:0 0 28px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--body); font-weight:500; font-size:14.5px;
+    padding:12px 22px; border-radius:8px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--signal); color:#fff;}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink); background:var(--surface);}
+  .btn-ghost:hover{border-color:var(--steel-dim);}
+  .btn-fiverr{border:1px solid #1DBF73; color:#1DBF73; background:var(--surface);}
+  .btn-fiverr:hover{background:#1DBF73; color:#fff;}
+
+  .pipeline{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:24px 20px 20px; box-shadow:var(--shadow); margin-top:44px;
+  }
+  .pipeline-label{font-family:var(--mono); font-size:11px; color:var(--steel-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;}
+  .pipe-row{display:flex; flex-wrap:wrap; align-items:center; gap:0;}
+  .pipe-node{
+    background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:10px 14px;
+    font-family:var(--mono); font-size:12.5px; color:var(--ink);
+    display:flex; align-items:center; gap:10px; position:relative; z-index:2;
+  }
+  .pipe-node .dot{width:7px; height:7px; border-radius:50%; background:var(--signal); flex-shrink:0;}
+  .pipe-node small{color:var(--steel); font-family:var(--body); font-weight:400; margin-left:8px;}
+  .pipe-connector{height:1px; width:28px; background:var(--line); position:relative; flex-shrink:0;}
+  .packet{
+    position:absolute; top:-4px; left:0; width:9px; height:9px; border-radius:50%;
+    background:var(--circuit); box-shadow:0 0 8px var(--circuit);
+    animation:travel 3.2s ease-in-out infinite;
+  }
+  .pipe-connector:nth-of-type(2) .packet{animation-delay:0s;}
+  .pipe-connector:nth-of-type(4) .packet{animation-delay:0.8s;}
+  .pipe-connector:nth-of-type(6) .packet{animation-delay:1.6s;}
+  .pipe-connector:nth-of-type(8) .packet{animation-delay:2.4s;}
+  @keyframes travel{
+    0%{left:0; opacity:0;}
+    10%{opacity:1;}
+    90%{opacity:1;}
+    100%{left:100%; opacity:0;}
+  }
+  @keyframes travelVertical{
+    0%{top:0; opacity:0;}
+    10%{opacity:1;}
+    90%{opacity:1;}
+    100%{top:100%; opacity:0;}
+  }
+  .pipeline-caption{margin-top:16px; font-size:12.5px; color:var(--steel-dim); font-family:var(--mono);}
+
+  section{padding:84px 0;}
+  section.alt{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:44px; max-width:60ch;}
+  .section-eyebrow{font-family:var(--mono); font-size:12.5px; color:var(--circuit); text-transform:uppercase; letter-spacing:0.1em; margin:0 0 10px;}
+  h2{font-family:var(--display); font-size:clamp(1.6rem,3vw,2.1rem); margin:0 0 12px; font-weight:600;}
+  .section-desc{color:var(--steel); font-size:0.98rem; margin:0;}
+  .section-desc code{background:var(--surface-2); border:1px solid var(--line); padding:2px 6px; border-radius:4px; font-family:var(--mono); font-size:0.85em;}
+
+  .about-grid{display:grid; grid-template-columns:1.3fr 0.9fr; gap:48px; align-items:start;}
+  .about-body p{color:var(--steel); font-size:1rem; margin:0 0 16px;}
+  .about-body strong{color:var(--ink); font-weight:600;}
+  .stat-card{background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin-bottom:14px;}
+  .stat-num{font-family:var(--display); font-size:1.7rem; color:var(--signal); font-weight:700;}
+  .stat-label{font-size:13px; color:var(--steel); margin-top:2px;}
+
+  .timeline{border-left:1px solid var(--line); margin-left:6px;}
+  .tl-item{position:relative; padding:0 0 40px 32px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:''; position:absolute; left:-6px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--surface); border:2px solid var(--signal);}
+  .tl-date{font-family:var(--mono); font-size:12.5px; color:var(--circuit); margin-bottom:6px; display:block;}
+  .tl-role{font-family:var(--display); font-size:1.15rem; font-weight:600; margin:0 0 4px;}
+  .tl-org{color:var(--steel); font-size:0.92rem; margin:0 0 10px;}
+  .tl-desc{color:var(--steel); font-size:0.95rem; max-width:60ch; margin:0 0 10px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{font-family:var(--mono); font-size:11.5px; color:var(--circuit); background:var(--circuit-tint); border:1px solid rgba(15,139,141,0.2); padding:4px 10px; border-radius:20px;}
+
+  .proj-group{margin-bottom:56px;}
+  .proj-group:last-child{margin-bottom:0;}
+  .proj-group-head{display:flex; align-items:baseline; gap:12px; margin-bottom:22px; padding-bottom:12px; border-bottom:1px solid var(--line);}
+  .proj-group-head h3{font-family:var(--display); font-size:1.05rem; font-weight:600; margin:0; color:var(--ink);}
+  .proj-group-head span{font-family:var(--mono); font-size:12px; color:var(--steel-dim);}
+  .card-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;}
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden; box-shadow:var(--shadow);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{border-color:var(--steel-dim); transform:translateY(-3px);}
+  .card-thumb{
+    width:100%; aspect-ratio:16/9; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--tint-a,#EEF1FB), var(--tint-b,#F7F3EC));
+  }
+  .card-thumb img{width:100%; height:100%; object-fit:cover; display:none; position:absolute; inset:0;}
+  .thumb-fallback{font-size:2rem; opacity:0.55;}
+  .thumb-tag{
+    position:absolute; top:10px; left:10px; font-family:var(--mono); font-size:10.5px;
+    background:rgba(255,255,255,0.85); color:var(--steel); padding:3px 8px; border-radius:20px;
+    border:1px solid var(--line);
+  }
+  .card-body{padding:20px;}
+  .card h4{font-family:var(--display); font-size:1.02rem; margin:0 0 8px; font-weight:600;}
+  .card p{color:var(--steel); font-size:0.92rem; margin:0 0 14px;}
+  .card .tag-row{margin-bottom:0;}
+  .card-link{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-family:var(--mono); font-size:12.5px; color:var(--signal); text-decoration:none;}
+  .card-link:hover{text-decoration:underline;}
+
+  /* Core stack row */
+  .core-stack{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:48px;}
+  .core-pill{
+    display:flex; align-items:center; gap:10px;
+    background:var(--surface); border:1px solid var(--line); border-radius:30px;
+    padding:10px 18px 10px 14px; box-shadow:var(--shadow);
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .core-pill:hover{transform:translateY(-2px); border-color:var(--signal);}
+  .core-pill .icon{
+    width:26px; height:26px; border-radius:50%; background:var(--signal-tint);
+    display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0;
+  }
+  .core-pill span.label{font-family:var(--display); font-weight:600; font-size:0.92rem;}
+  .core-pill span.years{font-family:var(--mono); font-size:11px; color:var(--steel-dim);}
+
+  .skills-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .skill-cat{
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:22px 20px; box-shadow:var(--shadow);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .skill-cat:hover{border-color:var(--steel-dim); transform:translateY(-3px);}
+  .skill-cat .cat-head{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .skill-cat .cat-icon{
+    width:34px; height:34px; border-radius:9px; background:var(--circuit-tint);
+    display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;
+  }
+  .skill-cat h4{font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--steel-dim); margin:0;}
+  .skill-cat .pill-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-pill{
+    font-size:0.86rem; color:var(--ink); background:var(--surface-2);
+    border:1px solid var(--line); padding:6px 12px; border-radius:20px;
+    transition:background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .skill-pill:hover{background:var(--signal-tint); border-color:var(--signal); transform:translateY(-1px);}
+
+  .contact-inner{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;}
+  .contact-title{font-family:var(--display); font-size:clamp(1.8rem,3.6vw,2.6rem); margin:0 0 14px; font-weight:700;}
+  .contact-links{display:flex; gap:14px; flex-wrap:wrap;}
+  .contact-links a{
+    font-family:var(--mono); font-size:13.5px; color:var(--ink); text-decoration:none;
+    border:1px solid var(--line); padding:10px 18px; border-radius:8px; background:var(--surface-2);
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .contact-links a:hover{border-color:var(--signal); color:var(--signal);}
+  .contact-links a.fiverr:hover{border-color:#1DBF73; color:#1DBF73;}
+
+  footer{border-top:1px solid var(--line); padding:28px 0; text-align:center; color:var(--steel-dim); font-family:var(--mono); font-size:12.5px;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero .wrap{grid-template-columns:1fr; text-align:left;}
+    .avatar{width:150px; height:188px;}
+    .about-grid{grid-template-columns:1fr;}
+    .card-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-inner{flex-direction:column; align-items:flex-start;}
+    .pipe-row{flex-direction:column; align-items:stretch; gap:0;}
+    .pipe-node{width:100%;}
+    .pipe-connector{width:1px; height:26px; margin:0 0 0 20px;}
+    .packet{top:0; left:-4px; animation-name:travelVertical;}
+  }
+  @media (max-width:520px){
+    .avatar{width:128px; height:160px;}
+    .avatar-fallback{font-size:1.8rem;}
+    .skills-grid{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+    .hero{padding:64px 0 44px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">kamrul<span>.</span>hasan</a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="avatar">
+        <!-- Replace images/profile.jpg with your photo -->
+        <img src="images/profile.jpg" alt="Kamrul Hasan" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+        <div class="avatar-fallback">KH</div>
+      </div>
+      <div>
+        <p class="eyebrow">Dhaka, Bangladesh · Available for work</p>
+        <h1 class="hero-title">I connect backend engineering with <em>intelligent systems.</em></h1>
+        <p class="hero-sub">Java &amp; Spring Boot developer building the plumbing that lets AI models talk to real applications — plus 10+ WordPress sites shipped for clients through Road Coderr.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="https://github.com/MrKamrul" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+          <!-- Replace with your real Fiverr profile URL -->
+          <a href="https://www.fiverr.com/your-username" target="_blank" rel="noopener" class="btn btn-fiverr">Hire me on Fiverr ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="pipeline">
+        <p class="pipeline-label">// request lifecycle</p>
+        <div class="pipe-row">
+          <div class="pipe-node"><span class="dot"></span>Client request<small>HTTPS</small></div>
+          <div class="pipe-connector"><span class="packet"></span></div>
+          <div class="pipe-node"><span class="dot"></span>Spring Boot<small>validate + secure</small></div>
+          <div class="pipe-connector"><span class="packet"></span></div>
+          <div class="pipe-node"><span class="dot"></span>REST API<small>JSON payload</small></div>
+          <div class="pipe-connector"><span class="packet"></span></div>
+          <div class="pipe-node"><span class="dot"></span>Python ML model<small>prediction</small></div>
+          <div class="pipe-connector"><span class="packet"></span></div>
+          <div class="pipe-node"><span class="dot"></span>Response<small>&lt; 200ms</small></div>
+        </div>
+        <p class="pipeline-caption">Java + Spring Boot ↔ Python ML, wired together</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">About</p>
+        <h2>Systems that solve real problems</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-body">
+          <p>I build software where <strong>structure meets intelligence</strong> — Java-based backend systems, Spring Boot applications, and AI-driven solutions, alongside modern web development with WordPress.</p>
+          <p>Most recently I've been focused on the hard part of "AI applications": not training a model, but wiring it safely into a real system. That means Spring Boot handling validation and security while a Python ML model does the prediction work, talking to each other over REST and JSON.</p>
+          <p>Alongside that, I've built multiple WordPress business sites through <strong>Road Coderr</strong>, working directly with clients on performance, SEO, and conversion-focused design.</p>
+          <p>Currently finishing a BSc in Computing &amp; Information Systems (Artificial Intelligence) at Daffodil International University.</p>
+        </div>
+        <div>
+          <div class="stat-card">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Business websites shipped for clients</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1yr+</div>
+            <div class="stat-label">Professional experience at Road Coderr</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">3.70</div>
+            <div class="stat-label">GPA / 4.00 — BSc Computing &amp; AI, DIU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Experience</p>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">Apr 2026 — Present</span>
+          <h3 class="tl-role">Web Developer, Full-time</h3>
+          <p class="tl-org">Road Coderr · Dhaka, Bangladesh (Remote)</p>
+          <p class="tl-desc">Design, build, and optimize high-performance custom digital solutions — translating client requirements into fast, intuitive web experiences.</p>
+          <div class="tag-row"><span class="tag">PHP</span><span class="tag">WordPress</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Jul 2025 — Apr 2026</span>
+          <h3 class="tl-role">Website Developer, Internship</h3>
+          <p class="tl-org">Road Coderr · Dhaka, Bangladesh (Remote)</p>
+          <p class="tl-desc">Gained hands-on experience in modern web development, working with senior developers to build, optimize, and troubleshoot real client sites and custom features. Converted to full-time.</p>
+          <div class="tag-row"><span class="tag">WordPress</span><span class="tag">cPanel</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Aug 2025</span>
+          <h3 class="tl-role">AWS Academy Graduate — Cloud Foundations</h3>
+          <p class="tl-org">Amazon Web Services (AWS)</p>
+          <p class="tl-desc">Certification covering core AWS cloud infrastructure and services.</p>
+          <div class="tag-row"><span class="tag">Cloud Computing</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Jan 2022 — Jan 2026</span>
+          <h3 class="tl-role">BSc, Computing &amp; Information System (AI)</h3>
+          <p class="tl-org">Daffodil International University · GPA 3.70/4.00</p>
+          <p class="tl-desc">Coursework spanning Spring MVC, Spring Security, Database Management Systems, and Computer Networking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Projects</p>
+        <h2>Selected work</h2>
+        <p class="section-desc">Three kinds of work: backend/AI systems, client websites, and open-source practice repos. Drop matching image files into an <code>/images</code> folder next to this page and they'll appear automatically.</p>
+      </div>
+
+      <div class="proj-group">
+        <div class="proj-group-head"><h3>Backend &amp; AI systems</h3><span>Java · Spring Boot · Python</span></div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#E9EDFB; --tint-b:#EAF6F5;">
+              <img src="images/springboot-ml.jpg" alt="Spring Boot Python ML pipeline diagram" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">⚙️</div>
+              <span class="thumb-tag">images/springboot-ml.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Spring Boot ↔ Python ML pipeline</h4>
+              <p>An end-to-end system where Spring Boot handles request validation and security, then hands off to a Python ML model over REST/JSON for prediction, before packaging the response back to the client.</p>
+              <div class="tag-row"><span class="tag">Spring Boot</span><span class="tag">REST API</span><span class="tag">Python</span><span class="tag">JSON</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#E9EDFB; --tint-b:#F3EAF6;">
+              <img src="images/orrs.jpg" alt="ORRS AI Rehabilitation System" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🩺</div>
+              <span class="thumb-tag">images/orrs.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>ORRS — AI Rehabilitation System</h4>
+              <p>A Java-based system exploring AI-assisted rehabilitation workflows — applying intelligent systems thinking to a healthcare use case.</p>
+              <div class="tag-row"><span class="tag">Java</span><span class="tag">Healthcare</span></div>
+              <a class="card-link" href="https://github.com/MrKamrul" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <div class="proj-group-head"><h3>Client websites</h3><span>WordPress · PHP · SEO</span></div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#F6EFE6; --tint-b:#F3E6E6;">
+              <img src="images/pro88.jpg" alt="Pro88 Construction website" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🏗️</div>
+              <span class="thumb-tag">images/pro88.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Pro88 Construction</h4>
+              <p>Full content and layout overhaul for a high-end renovation company — modern hero banners, trust badges, structured services, and premium branding for an upscale clientele.</p>
+              <div class="tag-row"><span class="tag">WordPress</span><span class="tag">SEO</span><span class="tag">Branding</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#E6F2F6; --tint-b:#E6F6EE;">
+              <img src="images/paddleboardqc.jpg" alt="PaddleboardQC website" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🌊</div>
+              <span class="thumb-tag">images/paddleboardqc.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>PaddleboardQC</h4>
+              <p>A complete paddleboard spot directory with dynamic data management, custom PHP integrations, Google Maps enhancements, and automated geolocation tooling.</p>
+              <div class="tag-row"><span class="tag">PHP</span><span class="tag">Maps API</span><span class="tag">SEO</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#F3E6F6; --tint-b:#E6EAF6;">
+              <img src="images/espacenickel.jpg" alt="Espace Nickel website" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🏛️</div>
+              <span class="thumb-tag">images/espacenickel.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Espace Nickel</h4>
+              <p>A modern venue website highlighting events, facilities, and rentals — built for simple navigation and improved booking engagement.</p>
+              <div class="tag-row"><span class="tag">WordPress</span><span class="tag">UX</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#EAF6E6; --tint-b:#F6F3E6;">
+              <img src="images/prestigejoints.jpg" alt="Prestige Joints service page" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🔍</div>
+              <span class="thumb-tag">images/prestigejoints.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Prestige Joints</h4>
+              <p>SEO-optimized service page work — sharpened keyword focus and clarity while preserving structure and word count for local search visibility.</p>
+              <div class="tag-row"><span class="tag">SEO</span><span class="tag">Content</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-group">
+        <div class="proj-group-head"><h3>Open source &amp; practice</h3><span>github.com/MrKamrul</span></div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#FFF1E4; --tint-b:#F6EAE6;">
+              <img src="images/rsa.jpg" alt="RSA Encryption Decryption project" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🔐</div>
+              <span class="thumb-tag">images/rsa.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>RSA Encryption / Decryption</h4>
+              <p>An implementation of the RSA algorithm covering key generation, encryption, and decryption.</p>
+              <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Cryptography</span></div>
+              <a class="card-link" href="https://github.com/MrKamrul" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#E6F6F5; --tint-b:#E9EDFB;">
+              <img src="images/restaurant.jpg" alt="Restaurant Management System" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🍽️</div>
+              <span class="thumb-tag">images/restaurant.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Restaurant Management System</h4>
+              <p>A restaurant management system built in C, covering core order and inventory logic.</p>
+              <div class="tag-row"><span class="tag">C</span></div>
+              <a class="card-link" href="https://github.com/MrKamrul" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-thumb" style="--tint-a:#EAF6E6; --tint-b:#E6EEF6;">
+              <img src="images/shop.jpg" alt="Shop Management System" onload="this.style.display='block'; this.nextElementSibling.style.display='none';">
+              <div class="thumb-fallback">🛒</div>
+              <span class="thumb-tag">images/shop.jpg</span>
+            </div>
+            <div class="card-body">
+              <h4>Shop Management</h4>
+              <p>A shop management workflow scripted for Linux shell environments.</p>
+              <div class="tag-row"><span class="tag">Shell</span></div>
+              <a class="card-link" href="https://github.com/MrKamrul" target="_blank" rel="noopener">View on GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Skills</p>
+        <h2>Toolbox</h2>
+        <p class="section-desc">The stack I reach for most, plus the full range across backend, AI, web, and cloud.</p>
+      </div>
+
+      <div class="core-stack">
+        <div class="core-pill"><span class="icon">☕</span><span class="label">Java</span></div>
+        <div class="core-pill"><span class="icon">🍃</span><span class="label">Spring Boot</span></div>
+        <div class="core-pill"><span class="icon">🐘</span><span class="label">PHP</span></div>
+        <div class="core-pill"><span class="icon">🌐</span><span class="label">WordPress</span></div>
+        <div class="core-pill"><span class="icon">🐍</span><span class="label">Python (ML)</span></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <div class="cat-head"><span class="cat-icon">⚙️</span><h4>Backend</h4></div>
+          <div class="pill-row">
+            <span class="skill-pill">Java</span><span class="skill-pill">Spring Boot</span><span class="skill-pill">Spring MVC</span><span class="skill-pill">Spring Security</span><span class="skill-pill">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-head"><span class="cat-icon">🧠</span><h4>AI &amp; Data</h4></div>
+          <div class="pill-row">
+            <span class="skill-pill">Python (ML integration)</span><span class="skill-pill">JSON / data interchange</span><span class="skill-pill">Database Management (DBMS)</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-head"><span class="cat-icon">🌐</span><h4>Web &amp; CMS</h4></div>
+          <div class="pill-row">
+            <span class="skill-pill">WordPress</span><span class="skill-pill">PHP</span><span class="skill-pill">cPanel</span><span class="skill-pill">SEO &amp; site building</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <div class="cat-head"><span class="cat-icon">☁️</span><h4>Cloud &amp; Tools</h4></div>
+          <div class="pill-row">
+            <span class="skill-pill">AWS Cloud Foundations</span><span class="skill-pill">Computer Networking</span><span class="skill-pill">Git / GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="alt">
+    <div class="wrap contact-inner">
+      <div>
+        <p class="section-eyebrow">Contact</p>
+        <h2 class="contact-title">Let's build<br>something together.</h2>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com">Email ↗</a>
+        <a href="https://github.com/MrKamrul" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/kamrul-hasan-37a126241/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <!-- Replace with your real Fiverr profile URL -->
+        <a class="fiverr" href="https://www.fiverr.com/your-username" target="_blank" rel="noopener">Fiverr ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Kamrul Hasan · Built with Java, coffee, and a bit of Python
+</footer>
+
+</body>
+</html>
